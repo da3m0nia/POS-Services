@@ -1,0 +1,49 @@
+# ============================================================
+# POS Services — Cloudflare Worker Configuration
+# ============================================================
+# This file is gitignored. Never commit it — it contains the
+# real `database_id` for the deployed D1 instance.
+#
+# Required secrets (set via `wrangler secret put`):
+#   TELEGRAM_BOT_TOKEN          — Bot API token from BotFather
+#   TELEGRAM_WEBHOOK_SECRET     — Random token echoed by Telegram in
+#                                 the X-Telegram-Bot-Api-Secret-Token header
+#   WEBHOOK_SETUP_TOKEN         — Bearer/header/query token protecting
+#                                 /setup-webhook and /webhook-info
+#   SUPER_ADMIN_ID              — Numeric Telegram user ID of the Super Admin
+#   PRIVATE_CHANNEL_ID          — Channel ID (format -100...) that re-hosts
+#                                 uploaded photos
+# ============================================================
+
+name = "pos-services"
+main = "src/index.js"
+compatibility_date = "2024-11-01"
+workers_dev = true
+
+# ------------------------------------------------------------
+# Non-sensitive variables
+# ------------------------------------------------------------
+[vars]
+PUBLIC_WEBHOOK_URL = "https://pos-services.themilo.workers.dev/telegram/webhook"
+DROP_PENDING_UPDATES = "false"
+
+# ------------------------------------------------------------
+# D1 database binding
+# ------------------------------------------------------------
+[[d1_databases]]
+binding = "DB"
+database_name = "pos-services-db"
+database_id = "2c2f1a08-91c4-437f-9cd3-d9f0ceae8e13"
+migrations_dir = "migrations"
+
+# ------------------------------------------------------------
+# Cron trigger — daily cleanup at 03:00 UTC (06:30 Tehran)
+# ------------------------------------------------------------
+[triggers]
+crons = ["0 3 * * *"]
+
+# ------------------------------------------------------------
+# Observability — structured logs in the Cloudflare dashboard
+# ------------------------------------------------------------
+[observability]
+enabled = true
