@@ -33,7 +33,7 @@ DROP_PENDING_UPDATES = "false"
 [[d1_databases]]
 binding = "DB"
 database_name = "pos-services-db"
-database_id = "2c2f1a08-91c4-437f-9cd3-d9f0ceae8e13"
+database_id = "83918a81-5782-4e4e-aacd-4117b7aebe5d"
 migrations_dir = "migrations"
 
 # ------------------------------------------------------------
