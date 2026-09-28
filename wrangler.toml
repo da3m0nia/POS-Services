@@ -24,7 +24,7 @@ workers_dev = true
 # Non-sensitive variables
 # ------------------------------------------------------------
 [vars]
-PUBLIC_WEBHOOK_URL = "https://pos-services.themilo.workers.dev/telegram/webhook"
+PUBLIC_WEBHOOK_URL = "https://pos-services.pos-services.workers.dev/telegram/webhook"
 DROP_PENDING_UPDATES = "false"
 
 # ------------------------------------------------------------
