@@ -728,7 +728,7 @@ async function notifyAdminsSafe(env, recipients, text, callbackButton) {
         chat_id: recipient,
         text: String(text),
         parse_mode: "HTML",
-        reply_markup: kb([callbackButton]),
+        reply_markup: kb([[callbackButton]]),   // ✅ FIXED: double array
       }).catch((e) => console.error("admin notify failed:", safeError(e)))
     )
   );
